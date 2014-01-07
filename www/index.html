@@ -1,42 +1,59 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
     <head>
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
-        <title>Hello World</title>
+		<link rel="stylesheet" type="text/css" href="css/kendo.mobile.all.min.css" />
+        <title>Weather MashUp</title>
     </head>
     <body>
-        <div class="app">
-            <h1>PhoneGap</h1>
-            <div id="deviceready" class="blink">
-                <p class="event listening">Connecting to Device</p>
-                <p class="event received">Device is Ready</p>
-            </div>
-        </div>
+	
+	<div data-role="view" data-init="pushInfo" data-layout="app" data-title="weather" id="weather"> 
+		<div id="weatherfc"></div> 
+	</div>
+	<div data-role="view" data-init="getAbout" data-layout="app" data-title="about" id="about"> 
+		<ul id="abouts"></ul> 
+	</div> 
+	
+	<div data-role="layout" data-id="app"> 
+		<header data-role="header"> 
+		<div data-role="navbar">Conference Tracker</div> 
+		</header> 
+		<footer data-role="footer"> 
+			<div data-role="tabstrip">
+            <a href="#info" data-icon="home">Info</a>
+			<a href="#weather" data-icon="globe">Weather</a> 
+			<a href="#about" data-icon="about">About</a> 
+			</div>
+		</footer> 
+	</div> 
+	
         <script type="text/javascript" src="phonegap.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
+	    <script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/kendo.mobile.min.js"></script>
+		
         <script type="text/javascript">
             app.initialize();
+			
+			var getWeather = function (){		
+			$.getJSON('http://54.197.239.203:8080/mashUp',  function(wth) {
+			$('#weatherfc').append("<p class='info'>Ciudad:"+wth.YourWeather.City+"</p>");
+	        $('#weatherfc').append("<p class='info'>Tiempo:"+wth.YourWeather.Summary+"</p>");
+			$('#weatherfc').append("<p class='info'>Temperatura:"+wth.YourWeather.Temperature+"</p>");
+			$('#weatherfc').append("<p class='info'>Vel. Viento:"+wth.YourWeather.WindSpeed+"</p>");
+			})
+			.fail(function() {
+			$('#weatherfc').append("<p class='info'> City: -- Not Found -- </p>");
+			});
+			}
+		
+			var getAbout = function() {
+			$("#abouts").append("<p class='info'>Axway, líder del mercado en el control del flujo de datos, es una compañía de servicios y software global con más de 11.000 clientes del sector público y privado en 100 países. Durante más de una década, Axway ha facultado a las organizaciones más importantes del mundo con soluciones probadas que ayudan a gestionar las interacciones comerciales a través del intercambio de los datos que se transfieren en la empresa, las comunidades B2B, la nube y los dispositivos móviles.</p>");
+			$("#abouts").append("<p class='info'>Entre nuestras galardonadas soluciones se abarcan la integración de empresa a empresa (B2B) y la gestión de comunidades, la gestión de transferencia de archivos, la gestión de identidades y APIs y la seguridad del correo electrónico, todas ellas implementadas en las propias instalaciones y en la nube con servicios profesionales y gestionados. Axway aprovecha estas soluciones, junto con su profunda experiencia en el sector, para ayudar a los clientes a gestionar sus flujos de datos entre dichos sectores.</p>");
+			}
         </script>
     </body>
 </html>
