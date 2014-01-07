@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html>
     <head>
         <meta charset="utf-8" />
@@ -13,7 +14,7 @@
 	<div data-role="view" data-layout="app" data-title="info" id="info"> 
 		<div id="news"></div> 
 	</div>
-	<div data-role="view" data-init="pushInfo" data-layout="app" data-title="weather" id="weather"> 
+	<div data-role="view" data-init="getWeather" data-layout="app" data-title="weather" id="weather"> 
 		<div id="weatherfc"></div> 
 	</div>
 	<div data-role="view" data-init="getAbout" data-layout="app" data-title="about" id="about"> 
@@ -22,7 +23,7 @@
 	
 	<div data-role="layout" data-id="app"> 
 		<header data-role="header"> 
-		<div data-role="navbar">Weather MashUp!</div> 
+		<div data-role="navbar">Weather MashUp</div> 
 		</header> 
 		<footer data-role="footer"> 
 			<div data-role="tabstrip">
@@ -57,6 +58,6 @@
 			$("#abouts").append("<p class='info'>Axway, líder del mercado en el control del flujo de datos, es una compañía de servicios y software global con más de 11.000 clientes del sector público y privado en 100 países. Durante más de una década, Axway ha facultado a las organizaciones más importantes del mundo con soluciones probadas que ayudan a gestionar las interacciones comerciales a través del intercambio de los datos que se transfieren en la empresa, las comunidades B2B, la nube y los dispositivos móviles.</p>");
 			$("#abouts").append("<p class='info'>Entre nuestras galardonadas soluciones se abarcan la integración de empresa a empresa (B2B) y la gestión de comunidades, la gestión de transferencia de archivos, la gestión de identidades y APIs y la seguridad del correo electrónico, todas ellas implementadas en las propias instalaciones y en la nube con servicios profesionales y gestionados. Axway aprovecha estas soluciones, junto con su profunda experiencia en el sector, para ayudar a los clientes a gestionar sus flujos de datos entre dichos sectores.</p>");
 			}
-        </script>
+    </script>
     </body>
 </html>
