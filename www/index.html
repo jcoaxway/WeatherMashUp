@@ -11,7 +11,7 @@
     </head>
     <body>
 	
-	<div data-role="view" data-layout="app" data-title="info" id="info"> 
+	<div data-role="view" data-init="getInfo" data-layout="app" data-title="info" id="info"> 
 		<div id="news"></div> 
 	</div>
 	<div data-role="view" data-init="getWeather" data-layout="app" data-title="weather" id="weather"> 
@@ -41,8 +41,14 @@
 		
         <script type="text/javascript">
             var app = new kendo.mobile.Application($(document).body,{transition:"slide"});
+		
+			var getInfo = function() {
+			$("#news").append("<p class='info'>Esta demo pretende mostrar el resultado de la composición de varias APIs públicas, que a partir de la IP del dispositivo móvil informa del tiempo en la ciudad donde este se encuentra.</p>");
+			$("#news").append("<p class='info'>Pinchando en el icono del globo terráqueo obtendrá la información.</p>");
+			}
 			
 			var getWeather = function (){		
+			$('#weatherfc').html("<p class='info'>  -- Procesando -- </p>");
 			$.getJSON('http://54.197.239.203:8080/mashUp',  function(wth) {
 			$('#weatherfc').append("<p class='info'>Ciudad:"+wth.YourWeather.City+"</p>");
 	        $('#weatherfc').append("<p class='info'>Tiempo:"+wth.YourWeather.Summary+"</p>");
@@ -50,7 +56,7 @@
 			$('#weatherfc').append("<p class='info'>Vel. Viento:"+wth.YourWeather.WindSpeed+"</p>");
 			})
 			.fail(function() {
-			$('#weatherfc').append("<p class='info'> City: -- Not Found -- </p>");
+			$('#weatherfc').append("<p class='info'>  -- Not Found -- </p>");
 			});
 			}
 		
