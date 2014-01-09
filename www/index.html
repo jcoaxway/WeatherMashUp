@@ -49,7 +49,7 @@
 			
 			var getWeather = function (){		
 			$('#weatherfc').html("<p class='info'>  -- Procesando -- </p>");
-			$.getJSON('http://54.197.239.203:8080/mashUp',  function(wth) {
+			$.getJSON('http://bit.ly/1d2Jl6b',  function(wth) {
 			$('#weatherfc').html("<p class='info'>Ciudad:"+wth.YourWeather.City+"</p>");
 	        $('#weatherfc').append("<p class='info'>Tiempo:"+wth.YourWeather.Summary+"</p>");
 			$('#weatherfc').append("<p class='info'>Temperatura:"+wth.YourWeather.Temperature+"</p>");
